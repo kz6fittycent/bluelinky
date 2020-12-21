@@ -1,0 +1,34 @@
+name: bluelinky
+adopt-info: bluelinky
+summary: An unofficial nodejs API wrapper for Hyundai BlueLink
+description: | 
+  A snap for the unofficial nodejs API wrapper for Hyundai BlueLink - "bluelinky"
+  
+  Read the docs: https://hacksore.github.io/bluelinky-docs/docs/getting-started
+  
+  To start from your terminal, type: bluelinky
+
+
+grade: stable
+confinement: strict
+
+architectures:
+  - build-on: amd64
+
+apps:
+  bluelinky:
+    command: Bluelinky ()
+    plugs:
+      - home
+      - network
+
+parts:
+  bluelinky:
+    source: https://github.com/Hacksore/bluelinky
+    source-type: git
+    plugin: nodejs
+    
+    override-pull: |
+      snapcraftctl pull
+      snapcraftctl set-version "$(git describe --tags | sed 's/^v//' | cut -d "-" -f1)"
+      
