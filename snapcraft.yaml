@@ -19,7 +19,7 @@ architectures:
 
 apps:
   bluelinky:
-    command: Bluelinky ()
+    command: bin/bluelinky
     plugs:
       - home
       - network
