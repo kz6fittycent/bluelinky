@@ -8,7 +8,9 @@ description: |
   
   To start from your terminal, type: bluelinky
 
+license: MIT
 
+base: core20
 grade: stable
 confinement: strict
 
@@ -26,7 +28,15 @@ parts:
   bluelinky:
     source: https://github.com/Hacksore/bluelinky
     source-type: git
-    plugin: nodejs
+    plugin: npm
+    npm-node-version: "18.1.0"    
+    source-type: git
+    build-snaps:
+      - node/18/stable
+      
+    override-build: |
+      npm install --include=dev
+      snapcraftctl build
     
     override-pull: |
       snapcraftctl pull
