@@ -37,7 +37,6 @@ parts:
       - node/18/stable
   
     override-build: |
-      npm config set user 0
       npm config set unsafe-perm true
       npm install -g --prefix "${SNAPCRAFT_PART_INSTALL}" --include=dev bluelinky 
       snapcraftctl build
