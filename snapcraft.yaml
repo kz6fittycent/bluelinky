@@ -19,7 +19,7 @@ architectures:
 
 apps:
   bluelinky:
-    command: bin/bluelinky
+    command: bin/npm run debug
     plugs:
       - home
       - network
@@ -33,9 +33,11 @@ parts:
     source-type: git
     build-snaps:
       - node/18/stable
-      
+    stage-snaps:
+      - node/18/stable
+  
     override-build: |
-      npm install --include=dev
+      npm install -g npm install -g bluelinky
       snapcraftctl build
     
     override-pull: |
