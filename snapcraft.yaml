@@ -37,7 +37,7 @@ parts:
       - node/18/stable
   
     override-build: |
-      npm install -g npm install -g bluelinky
+      npm install -g --include=dev bluelinky 
       snapcraftctl build
     
     override-pull: |
