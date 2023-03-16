@@ -19,7 +19,7 @@ architectures:
 
 apps:
   bluelinky:
-    command: bin/npm run debug
+    command: cd $SNAP/opt/bluelinky/ && npm run
     plugs:
       - home
       - network
@@ -37,8 +37,11 @@ parts:
       - node/18/stable
   
     override-build: |
-      yarn add bluelinky
-      snapcraftctl build
+      mkdir -p BUILD
+      cd BUILD
+      git clone https://github.com/Hacksore/bluelinky
+      mkdir -p $SNAPCRAFT_PART_INSTALL/opt
+      cp BUILD/* $SNAPCRAFT_PART_INSTALL/opt
     
     override-pull: |
       snapcraftctl pull
